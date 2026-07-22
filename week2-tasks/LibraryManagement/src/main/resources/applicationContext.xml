@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+               http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+               http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/context
+               http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--
+        Exercise 1: Configuring a Basic Spring Application
+        Define beans for BookRepository and BookService.
+        Spring manages their lifecycle inside its IoC container.
+    -->
+
+    <!-- BookRepository bean: no dependencies, so no extra config needed. -->
+    <bean id="bookRepository" class="com.library.repository.BookRepository"/>
+
+    <!--
+        Exercise 2: Implementing Dependency Injection (Setter Injection)
+        The <property> element tells Spring to call BookService.setBookRepository()
+        and pass the bookRepository bean as the argument.
+        This is setter-based Dependency Injection.
+    -->
+    <bean id="bookService" class="com.library.service.BookService">
+        <property name="bookRepository" ref="bookRepository"/>
+    </bean>
+
+    <!--
+        Exercise 7: Constructor Injection variant
+        Uncomment the bean below and comment out the setter-injection bean
+        above to switch to constructor-based DI.
+        <constructor-arg> tells Spring to call the constructor that takes
+        a BookRepository parameter.
+    -->
+    <!--
+    <bean id="bookService" class="com.library.service.BookService">
+        <constructor-arg ref="bookRepository"/>
+    </bean>
+    -->
+
+    <!--
+        Exercise 5 / Exercise 1 (IoC container config): same beans as above.
+        Both exercises point to the same XML configuration file pattern.
+    -->
+
+    <!--
+        Exercise 3 / Exercise 8: AOP support
+        Enables Spring's @AspectJ annotation processing.
+        The LoggingAspect bean will be applied automatically to
+        all beans in this context.
+    -->
+    <aop:aspectj-autoproxy/>
+    <bean id="loggingAspect" class="com.library.aspect.LoggingAspect"/>
+
+    <!--
+        Exercise 6: Component scanning (annotation-based config)
+        Uncomment the line below to allow @Service / @Repository annotations
+        to register beans instead of <bean> declarations.
+        Keep commented here since Exercise 1 and 2 use explicit XML wiring.
+    -->
+    <!--
+    <context:component-scan base-package="com.library"/>
+    -->
+
+</beans>
