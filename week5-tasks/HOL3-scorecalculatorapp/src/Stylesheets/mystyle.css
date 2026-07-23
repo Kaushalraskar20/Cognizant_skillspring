@@ -1,0 +1,11 @@
+.score-container {
+  font-family: Arial, sans-serif;
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+.score-container h2 { color: #2c3e50; }
+.score-value { font-size: 2em; color: #27ae60; font-weight: bold; }

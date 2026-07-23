@@ -1,0 +1,16 @@
+/* HOL 5: CSS Module — scoped to CohortDetails component only
+   Using CSS Modules means the class name is hashed (e.g. box_abc123)
+   so it never accidentally clashes with other components' styles.     */
+.box {
+  width: 300px;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+/* Tag selector inside the module — still scoped to this component */
+dt {
+  font-weight: 500;
+}
